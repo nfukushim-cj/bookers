@@ -1,10 +1,21 @@
-<div>
-  <h4>Title:</h4>
-  <p><%= @book.title %></p>
-</div>
-<h4>Body:</h4>
-<p><%= @book.body %></p>
-
-<%=link_to"Edit", edit_book_path(@book.id) %>
-|
-<%=link_to"Back", books_path %>
+  <div class="content">
+    <div>
+      <h4>Title:</h4>
+    </div>
+    <div>
+      <%= @book.title %>
+    </div>
+  </div>
+  <div class="content">
+    <div>
+      <h4>Body:</h4>
+    </div>
+    <div>
+      <%= @book.body %>
+    </div>
+  </div>
+  <div class="button_inline button_inline_margin">
+    <%=link_to"Edit", edit_book_path(@book.id) %>
+    <p>|</p>
+    <%=link_to"Back", books_path %>
+  </div>

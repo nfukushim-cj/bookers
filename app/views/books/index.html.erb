@@ -1,28 +1,38 @@
 <h1>Books</h1>
 
-    <Table>
+    <Table class="is_border">
      <tr>
          <th>Title</th>
          <th>Body</th>
      </tr>
-     <% @books.each do |list| %>
+      <% @books.each do |list| %>
          <tr>
             <td><%=list.title %></td>
             <td><%=list.body %></td>
-            <td><%=link_to"Show", book_path(list.id) %></td>
-            <td><%=link_to"Edit", edit_book_path(list.id) %></td>
-            <td><%=link_to"Destroy", book_path(list.id) %></td>
+            <td class="button-table"><%=link_to"Show", book_path(list.id) %></td>
+            <td class="button-table"><%=link_to"Edit", edit_book_path(list.id) %></td>
+            <td class="button-table"><%=link_to"Destroy", book_path(list.id), method: :delete , "data-confirm" => "本当に削除しますか？" %></td>
          </tr>
-    <% end %>
+      <% end %>
 
     </Table>
 
 
 <%= form_with model: @book, url: '/books', method: :post do |f| %>
     <h2>New book</h2>
-    <p>Title</p>
+
+    <% if @book.errors.any? %>
+        <ul>
+            <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    <% end %>
+
+
+    <di>Title</div>
     <div><%= f.text_field :title %></div>
-    <p>Body</p>
+    <div class="title_input">Body</div>
     <div><%= f.text_area :body %></div>
-    <div><%= f.submit 'Create Book'%></div>
+    <div class="button_submit"><%= f.submit 'Create Book'%></div>
 <% end %>
